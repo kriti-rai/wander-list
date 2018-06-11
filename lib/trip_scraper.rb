@@ -12,7 +12,8 @@ class TripScraper
 
     doc = Nokogiri::HTML(open('http://www.bbc.com/travel/destinations'))
     container = doc.css('div.primary-content')
-    title = container.css('.nested-list li a').text
+    name = container.css('.nested-list li a').text
+    url = doc.css('.nested-list li a').attribute('href').to_s
     binding.pry
     # doc.css('class-selector').map do |trip|
     #   trip_
