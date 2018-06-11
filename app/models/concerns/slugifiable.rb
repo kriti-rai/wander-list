@@ -6,7 +6,7 @@ module Slugifiable
   end
 
   module ClassMethods
-    def self.find_by_slug(slugified_name)
+    def find_by_slug(slugified_name)
       self.all.detect{|user| user.slug == slugified_name}
     end
   end
