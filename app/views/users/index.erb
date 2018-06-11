@@ -1,7 +1,9 @@
+<h2><font color="Maroon">Our Current Wanderers</font></h2>
+<br>
 <% if !!@users.empty? %>
   No users!
 <% else %>
   <%@users.each do |user| %>
-  <p><%= <a href='/users/#{user.slug}'>user.name</a> %></p>
+  <h4><font color="grey"><em><a href='/users/#{user.slug}'><%= user.username %></a></em></font></h4>
   <%end%>
 <%end%>
