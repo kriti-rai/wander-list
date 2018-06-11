@@ -1,3 +1,5 @@
+require_relative './concerns/slugifiable.rb'
+
 class User < ActiveRecord::Base
   has_many :boards
   has_many :trips, through: :boards
@@ -5,15 +7,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :username, :email, :password, presence: true
 
-  def slug
-    if self.username.include?(" ")
-      self.username.downcase.gsub(" ", "-")
-    else
-      self.username.downcase
-    end
-  end
+  extend Slugifiable::ClassMethods
+  include Slugifiable::InstanceMethods
 
-  def self.find_by_slug(slugified_name)
-    self.all.detect{|user| user.slug == slugified_name}
-  end
 end
