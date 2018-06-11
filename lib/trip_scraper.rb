@@ -1,0 +1,2 @@
+class TripScraper
+end
