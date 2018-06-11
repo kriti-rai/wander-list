@@ -43,7 +43,25 @@ class UserController < ApplicationController
   get '/logout' do
     #clears session
     #redirect to '/'
+    session.clear
+    #redirect to "/users/#{@user.slug}"
   end
+
+
+  # ---------------users page------------
+
+  get '/users' do
+    #shows the list of all users
+    @users = User.all
+    erb :'users/index'
+  end
+
+  get '/users/:slug' do
+    #finds and shows an individual user
+    @user = User.find_by(params[:slug])
+    erb :'users/show'
+  end
+
 
 
 
