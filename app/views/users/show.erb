@@ -1,0 +1,12 @@
+
+  <p>Hey there, <%= @user.name! %></p>
+
+  <% if !!@user.boards.empty? %>
+    Seems like you haven't created a board yet!
+  <% else %>
+    <% @user.boards.each do |board| %>
+      <ul>
+        <li><a href = "/board/#{board.slug}">board.name</a></p>
+      </ul>
+      <% end %>
+  <% end %>
