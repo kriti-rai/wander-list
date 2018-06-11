@@ -1,0 +1,7 @@
+<% if !!@users.empty? %>
+  No users!
+<% else %>
+  <%@users.each do |user| %>
+  <p><%= <a href='/users/#{user.slug}'>user.name</a> %></p>
+  <%end%>
+<%end%>
