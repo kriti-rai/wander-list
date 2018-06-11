@@ -33,7 +33,7 @@ class UserController < ApplicationController
     @user = User.find_by(username: params[:username])
 
     if @user && @user.authenticate(params[:password])
-      session[:id] = user.id
+      session[:id] = @user.id
       redirect to "/users/#{@user.slug}"
     else
       redirect to '/login'
