@@ -5,6 +5,6 @@ class Board < ActiveRecord::Base
   has_many :board_trips
   has_many :trips, through: :board_trips
 
-  extend Slugifiable::ClassMethods
-  include Slugifiable::InstanceMethods
+  include Slugifiable
+  
 end
