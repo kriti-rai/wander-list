@@ -9,14 +9,15 @@ class UserController < ApplicationController
     #gets params and creates a user
     #logs the user in
     #redirects to their board view
-    @user = User.new(params)
+    @user = User.new(username: params[:username], email: params[:email], password: params[:password])
+    @user.save
 
-    if !params[:username].empty? && !params[:email].empty? && params[:password].empty?
+    if !!@user.save
       @user.save
-      session[:id] = user.id
-      #redirect to "/users/#{@user.slug}"
+      session[:id] = @user.id
+      redirect to "/users/#{@user.slug}"
     else
-      '/signup'
+      redirect to '/signup'
     end
 
   end
@@ -33,7 +34,7 @@ class UserController < ApplicationController
 
     if @user && @user.authenticate(params[:password])
       session[:id] = user.id
-      #redirect to "/users/#{@user.slug}"
+      redirect to "/users/#{@user.slug}"
     else
       redirect to '/login'
     end
@@ -44,7 +45,7 @@ class UserController < ApplicationController
     #clears session
     #redirect to '/'
     session.clear
-    #redirect to "/users/#{@user.slug}"
+    redirect to "/"
   end
 
 
@@ -58,7 +59,7 @@ class UserController < ApplicationController
 
   get '/users/:slug' do
     #finds and shows an individual user
-    @user = User.find_by(params[:slug])
+    @user = User.find_by_slug(params[:slug])
     erb :'users/show'
   end
 
