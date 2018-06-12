@@ -1,5 +1,5 @@
 <h2><em><font color = "maroon">Oh! The places you will go...</font></em></h2>
 <br>
 <% @trips.each.with_index(1) do |trip, i| %>
-  <h4><font color = "grey"><%="#{i}"%>.</font> <a href = <%="#{trip.url}"%> "target="_blank"><%= trip.name %></a><h4>
+  <h4><font color = "grey"><%="#{i}"%>.</font> <a href = <%="#{trip.url}"%> target="_blank"><%= trip.name %></a><h4>
   <% end %>
