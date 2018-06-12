@@ -1,1 +1,1 @@
-TripParser.new.call
+TripScrapper.new.call
