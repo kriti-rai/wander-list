@@ -1,1 +1,1 @@
-TripScrapper.new.scrape_page
+
