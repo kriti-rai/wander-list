@@ -1,0 +1,9 @@
+<form method='POST' action='/boards/<%=@board.slug%>'>
+  <input type="hidden" name="_method" value="PATCH">
+  <h2><em><font color="maroon"><%=@board.name%></font></em></h2>
+  <br>
+  <font color='grey'>Edit Title: <input type= "text" name="name"></font>
+
+  <input type="submit" value="submit">
+</form>
+<br>
