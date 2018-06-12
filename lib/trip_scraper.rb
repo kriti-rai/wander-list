@@ -18,6 +18,5 @@ class TripScraper
       trip_hash_array << trip_hash
     end
     trip_hash_array
-    binding.pry
   end
 end
