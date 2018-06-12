@@ -3,20 +3,18 @@ require 'open-uri'
 require 'pry'
 
 class TripScraper
-  #scrapes a list of destination from a website
-  #website http://time.com/5050064/travel-and-leisure-places-to-travel-2018/
-  #each trip is an instance of Trip class
-
   def scrape_page
-    trips = []
+    trip_hash_array = []
 
     doc = Nokogiri::HTML(open('http://www.bbc.com/travel/destinations'))
-    container = doc.css('div.primary-content')
-    name = container.css('.nested-list li a').text
-    url = doc.css('.nested-list li a').attribute('href').to_s
-    binding.pry
-    # doc.css('class-selector').map do |trip|
-    #   trip_
+    links = doc.css('div.primary-content').css('.section-body a')
+    links.each do |link|
+      trip_hash = {
+        :name => link.text.gsub(/\n/,""),
+        :url => link.attribute('href').to_s
+      }
+      trip_hash_array << trip_hash
+    end
+    trip_hash_array
   end
 end
-TripScraper.new.scrape_page
