@@ -21,4 +21,3 @@ class TripScraper
     binding.pry
   end
 end
-TripScraper.new.scrape_page
