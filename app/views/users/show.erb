@@ -5,7 +5,7 @@
   <% else %>
     <% @user.boards.each do |board| %>
       <ul>
-        <li><h3><a href = "/boards/#{board.slug}">board.name</a></h3>
+        <li><h3><a href = "/boards/#{board.slug}"><%=board.name%></a></h3>
       </ul>
       <% end %>
   <% end %>
