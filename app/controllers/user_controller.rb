@@ -5,7 +5,8 @@ class UserController < ApplicationController
     if Helper.logged_in?(session)
        redirect to '/'
      else
-    erb :'users/signup'
+       erb :'users/signup'
+     end
   end
 
   post '/signup' do
@@ -18,7 +19,7 @@ class UserController < ApplicationController
     if !!@user.save
       @user.save
       session[:id] = @user.id
-      redirect to "/users/#{@user.slug}"
+      redirect to "/"
     else
       redirect to '/signup'
     end
@@ -41,7 +42,7 @@ class UserController < ApplicationController
 
     if @user && @user.authenticate(params[:password])
       session[:id] = @user.id
-      redirect to "/users/#{@user.slug}"
+      redirect to "/"
     else
       redirect to '/login'
     end
