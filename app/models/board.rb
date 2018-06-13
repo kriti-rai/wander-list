@@ -5,6 +5,4 @@ class Board < ActiveRecord::Base
   has_many :board_trips
   has_many :trips, through: :board_trips
 
-  include Slugifiable
-  
 end
