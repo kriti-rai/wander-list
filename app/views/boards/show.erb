@@ -8,7 +8,7 @@
     <% end %>
 <%end%>
 <br>
-<p>Add trips</a> | a href='/users/<%=@user.slug%>'>My Boards<p>
+<p>Add trips</a> | <a href='/users/<%=@user.slug%>'>My Boards</a> | <a href='/'>Home</a><p>
 
 <form method='POST' action='/boards/<%=@board.id%>/delete'>
   <input type='hidden' name='_method' value = 'DELETE'>
