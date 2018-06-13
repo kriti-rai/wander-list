@@ -1,17 +1,18 @@
-class TripController < ApplicationController
+class BoardController < ApplicationController
 
   #---------CREATE -----------
-  get '/new' do
+  get '/boards/new' do
     if !Helper.logged_in?(session)
      redirect to '/login'
    else
      @user = Helper.current_user(session)
-     erb 'boards/new'
+     erb :'boards/new'
    end
   end
 
   post '/boards' do
     @user = Helper.current_user(session)
+    # raise params.inspect
     if !!params[:name].empty?
       redirect to '/boards/new'
     else
