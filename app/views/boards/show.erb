@@ -4,17 +4,12 @@
   <h4><font color="grey">Currently the board is empty.</font></h4>
 <%else%>
   <% @board.trips.each do |trip| %>
-    <h4><a href = <%="#{trip.url}"%> target = "_blank"><%= trip.name %></a><h4>
+    <h4><a href = <%="#{trip.url}"%> target = "_blank"><%= trip.name %></a></h4>
     <% end %>
 <%end%>
 <br>
 <% if @user == @board.user %>
-  <p><a href='/boards/<%=@board.id%>/edit'>Edit board</a><p>
-
-  <form method='POST' action='/boards/<%=@board.id%>/delete'>
-    <input type='hidden' name='_method' value = 'DELETE'>
-    <input type='submit' value='Delete Board'>
-  </form>
+  <p><a href='/boards/<%=@board.id%>/edit'>Edit board</a> | <a href='/boards'>Boards</a> | <a href='/'>Home</a></p>
+<% else %>
+  <p><a href='/boards'>Boards</a> | <a href='/'>Home</a></p>
 <% end %>
-<br>
-<a href='/boards'>Boards</a> | <a href='/'>Home</a><p>
