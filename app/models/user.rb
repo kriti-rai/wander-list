@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   has_secure_password
   validates :username, :email, :password, presence: true
+  validates :username, uniqueness: { case_sensitive: false }
+  validates :email, uniqueness: true
 
   include Slugifiable
 end
