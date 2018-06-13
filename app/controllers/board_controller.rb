@@ -30,17 +30,18 @@ class BoardController < ApplicationController
     #user can edit name
     #not able to add/del trips because there are so many
     if !Helper.logged_in?(session)
-      redirect to '/login'
+      flash[:message]="You have to be logged in to perform that action."
+      redirect to '/'
     elsif Helper.logged_in?(session)
       @user = Helper.current_user(session)
       if !Board.find(params[:id])
-        # flash[:message] = "The board does not exist."
+        flash[:message] = "The board does not exist."
         redirect '/boards'
       elsif @board = Board.find(params[:id])
           if @board.user == @user
             erb :'boards/edit'
           else
-            # flash[:message] = "You don't have the permission to edit the board because it's not yours."
+            flash[:message] = "You don't have the permission to edit the board because it's not yours."
             redirect '/boards'
           end
        end
@@ -76,7 +77,7 @@ class BoardController < ApplicationController
       @board.destroy
       redirect to "/users/#{@user.slug}"
     else
-      # flash[:message]= "You don't have the permission to delete this tweet because it's not yours."
+      flash[:message]= "You don't have the permission to delete this tweet because it's not yours."
       redirect to "/boards"
     end
 
@@ -89,7 +90,6 @@ class BoardController < ApplicationController
     if !Helper.logged_in?(session)
       redirect to '/'
     else
-      @user = Helper.current_user(session)
       @users = User.all
       erb :'boards/index'
     end
