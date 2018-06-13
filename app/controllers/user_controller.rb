@@ -59,16 +59,16 @@ class UserController < ApplicationController
 
   # ---------------users page------------
 
-  # get '/users' do
-  #   #shows the list of all users
-  #   @users = User.all
-  #   erb :'users/index'
-  # end
-  #
-  # get '/users/:slug' do
-  #   #finds and shows an individual user
-  #   @user = User.find_by_slug(params[:slug])
-  #   erb :'users/show'
-  # end
+  get '/users' do
+    #shows the list of all users
+    @users = User.all
+    erb :'users/index'
+  end
+
+  get '/users/:slug' do
+    #finds and shows an individual user
+    @user = User.find_by_slug(params[:slug])
+    erb :'users/show'
+  end
 
 end
