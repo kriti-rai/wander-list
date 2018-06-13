@@ -7,3 +7,10 @@
     <h4><a href = <%="#{trip.url}"%> target = "_blank"><%= trip.name %></a><h4>
     <% end %>
 <%end%>
+<br>
+<p>Add trips</a> | a href='/users/<%=@user.slug%>'>My Boards<p>
+
+<form method='POST' action='/boards/<%=@board.id%>/delete'>
+  <input type='hidden' name='_method' value = 'DELETE'>
+  <input type='submit' value='Delete Board'>
+</form>
