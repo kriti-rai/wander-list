@@ -1,17 +1,21 @@
 <center>
   <h1><font color="Maroon">Welcome to WanderList</font></h1>
   <br>
-  <p><font color="blue">Hi, <%=@user.username%></font> | My Boards | <a href='/boards'>Boards</a> | <a href='/logout'>Log Out</a><p>
+  <p>My Boards | <a href='/boards'>Boards</a> | <a href='/logout'>Log Out</a><p>
   <br>
-  <h4><font color="grey">Hey there wanderer, looking to plan a trip within the U.S. but don't know where to?<br>
-  Begin your journey right here by looking through the list of the best places to travel in the states and pin it to your board.</font></h4>
+  <h4><em><font color="grey">
+    Hey <%=@user.username%>, looking to plan a trip but don't know where to?<br>
+    Begin by looking at the list below and simply pin the trips to your board.
+  </font></em></h4>
   <br>
-  <img src="https://i.imgur.com/bdEBtdz.jpg?1" alt="path" align="middle">
+  <h2><strong><a href='/trips'>Best Places to Visit in the World</a></strong></h2>
+  <br>
+  <img src="https://i.imgur.com/bdEBtdz.jpg?1" alt="journey" align="middle">
 
   <h4><em><font color="grey">One's destination is never a place, but a new way of seeing things - Henry Miller</font></em></h4>
 
   <br>
-
-  <h4><strong><a href='/trips'>Best Places to Visit in U.S.</a></strong></h4>
-
+  <br>
+  <br>
+  <br>
 </center>
