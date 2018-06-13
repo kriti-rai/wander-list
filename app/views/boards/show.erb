@@ -9,7 +9,7 @@
 <%end%>
 <br>
 <% if @user == @board.user %>
-  <p>Add trips ? <p>
+  <p><a href='/boards/<%=@board.id%>/edit'>Edit board</a><p>
 
   <form method='POST' action='/boards/<%=@board.id%>/delete'>
     <input type='hidden' name='_method' value = 'DELETE'>
