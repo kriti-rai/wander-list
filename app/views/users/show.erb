@@ -3,9 +3,10 @@
   <% if !!@user.boards.empty? %>
     <h3><font color='grey'>Seems like you haven't created a board yet!</font></h3>
   <% else %>
+    <h3><em><font color = 'grey'>Your board(s)</font></em></h3>
     <% @user.boards.each do |board| %>
       <ul>
-        <li><h3><a href = "/boards/#{board.slug}"><%=board.name%></a></h3>
+        <li><h4><a href = "/boards/#{board.slug}"><%=board.name%></a></h4>
       </ul>
       <% end %>
   <% end %>
