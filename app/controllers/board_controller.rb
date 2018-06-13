@@ -65,11 +65,11 @@ class BoardController < ApplicationController
   delete '/boards/:id/delete' do
     #replace get with delete
     @board = Board.find(params[:id])
-    @board.destroy
     if !Helper.logged_in?(session)
       # flash[:message] = "ATTENTION: You must be logged in to perform this action."
       redirect to '/login'
     elsif @board.user == Helper.current_user(session)
+      @user = Helper.current_user(session)
       @board.destroy
       redirect to "/users/#{@user.slug}"
     else
