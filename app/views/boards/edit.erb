@@ -6,7 +6,7 @@
     <p>Edit Title: <input type= "text" name="name"><p>
     <p>Add or delete trips:<p>
       <%Trip.all.each do |trip| %>
-        <p><input type ='checkbox' name='board[trip_id]' value=<%=trip.id%> id='<%=trip.id%>'
+        <p><input type ='checkbox' name='[trip_ids][]' value=<%=trip.id%> id='<%=trip.id%>'
           <%='checked' if @board.trips.include?(trip)%>>
           <a href='<%=trip.url%>' target='_blank'><%=trip.name%></a><p></input>
       <% end %>
