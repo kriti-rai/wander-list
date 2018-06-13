@@ -1,5 +1,9 @@
 <h2><em><font color = "maroon"><%=@board.name%></font></em></h2>
 <br>
-<% @board.trips.each do |trip| %>
-  <h4><a href = <%="#{trip.url}"%> target = "_blank"><%= trip.name %></a><h4>
-<% end %>
+<%if @board.trips.empty?%>
+  <h4><font color="grey">Currently the board is empty.</font></h4>
+<%else%>
+  <% @board.trips.each do |trip| %>
+    <h4><a href = <%="#{trip.url}"%> target = "_blank"><%= trip.name %></a><h4>
+    <% end %>
+<%end%>

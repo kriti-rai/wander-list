@@ -3,23 +3,21 @@ class BoardController < ApplicationController
   #---------CREATE -----------
   get '/boards/new' do
     if !Helper.logged_in?(session)
-     redirect to '/login'
+     redirect to '/'
    else
-     @user = Helper.current_user(session)
      erb :'boards/new'
    end
   end
 
   post '/boards' do
     @user = Helper.current_user(session)
-    # raise params.inspect
     if !!params[:name].empty?
       redirect to '/boards/new'
     else
       @board = Board.create(name: params[:name])
       @board.user = @user
       @board.save
-      redirect to "/boards/#{@board.slug}"
+      redirect to "/boards/#{@board.id}"
     end
   end
 
@@ -32,10 +30,10 @@ class BoardController < ApplicationController
       redirect to '/login'
     elsif Helper.logged_in?(session)
       @user = Helpers.current_user(session)
-      if !Board.find_by_slug(params[:slug])
+      if !Board.find(params[:id])
         # flash[:message] = "The board does not exist."
         redirect '/boards'
-      elsif @board = Board.find_by_slug(params[:slug])
+      elsif @board = Board.find(params[:id])
           if @board.user == @user
             erb :'boards/edit'
           else
@@ -46,27 +44,27 @@ class BoardController < ApplicationController
     end
 
 
-    @board = Board.find_by(params[:slug])
+    @board = Board.find(params[:id])
 
     erb :"boards/edit"
 
   end
 
-  get '/boards/:slug' do
+  post '/boards/:slug' do
     #replace get with patch
-    @board = Board.find_by_slug(params[:slug])
+    @board = Board.find(params[:id])
     if !!params[:name].empty?
-      redirect to "/boards/#{@board.slug}/edit"
+      redirect to "/boards/#{@board.id}/edit"
     else
       @board.update(name: params[:name])
-      redirect to "/boards/#{@board.slug}"
+      redirect to "/boards/#{@board.id}"
     end
   end
 
   # ------------DELETE-------------
-  get '/boards/:slug/delete' do
+  get '/boards/:id/delete' do
     #replace get with delete
-    @board = Board.find_by(params[:slug])
+    @board = Board.find(params[:id])
     @board.destroy
     if !Helper.logged_in?(session)
       # flash[:message] = "ATTENTION: You must be logged in to perform this action."
@@ -86,7 +84,7 @@ class BoardController < ApplicationController
 
   get '/boards' do
     if !Helper.logged_in?(session)
-      redirect to '/login'
+      redirect to '/'
     else
       @user = Helper.current_user(session)
       @boards = Board.all
@@ -94,11 +92,11 @@ class BoardController < ApplicationController
     end
   end
 
-  get '/boards/:slug' do
+  get '/boards/:id' do
     if !Helper.logged_in?(session)
-      redirect to '/login'
+      redirect to '/'
     else
-      @board = Board.find_by_slug(params[:slug])
+      @board = Board.find(params[:id])
       erb :'boards/show'
     end
   end
