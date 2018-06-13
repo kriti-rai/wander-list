@@ -2,6 +2,9 @@ class UserController < ApplicationController
 
   get '/signup' do
     #directs user to the signup form
+    if Helper.logged_in?(session)
+       redirect to '/'
+     else
     erb :'users/signup'
   end
 
@@ -24,7 +27,11 @@ class UserController < ApplicationController
 
   get '/login' do
     #directs user to the login form
-    erb :'users/login'
+    if Helper.logged_in?(session)
+       redirect to '/'
+    else
+      erb :'users/login'
+    end
   end
 
   post '/login' do
@@ -51,19 +58,16 @@ class UserController < ApplicationController
 
   # ---------------users page------------
 
-  get '/users' do
-    #shows the list of all users
-    @users = User.all
-    erb :'users/index'
-  end
-
-  get '/users/:slug' do
-    #finds and shows an individual user
-    @user = User.find_by_slug(params[:slug])
-    erb :'users/show'
-  end
-
-
-
+  # get '/users' do
+  #   #shows the list of all users
+  #   @users = User.all
+  #   erb :'users/index'
+  # end
+  #
+  # get '/users/:slug' do
+  #   #finds and shows an individual user
+  #   @user = User.find_by_slug(params[:slug])
+  #   erb :'users/show'
+  # end
 
 end
