@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class UserController < ApplicationController
+  use Rack::Flash, :sweep => true
 
   get '/signup' do
     #directs user to the signup form

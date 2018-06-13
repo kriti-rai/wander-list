@@ -1,8 +1,12 @@
+require 'rack-flash'
+
 class BoardController < ApplicationController
+  use Rack::Flash, :sweep => true
 
   #---------CREATE -----------
   get '/boards/new' do
     if !Helper.logged_in?(session)
+      flash[:message]="You have to be logged in to perform that action."
      redirect to '/'
    else
      erb :'boards/new'
@@ -15,7 +19,6 @@ class BoardController < ApplicationController
       redirect to '/boards/new'
     else
       @board = @user.boards.create(name: params[:name])
-      # binding.pry
       @user.save
       redirect to "/boards/#{@board.id}"
     end
