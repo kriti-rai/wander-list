@@ -20,10 +20,10 @@ class UserController < ApplicationController
     @user.save
 
     if !!@user.save
-      @user.save
       session[:id] = @user.id
       redirect to "/"
-    else
+    elsif !!params[:username].empty? || !!params[:email].empty? || !!params[:password].empty?
+      flash[:message] = "All fields are required."
       redirect to '/signup'
     end
 
