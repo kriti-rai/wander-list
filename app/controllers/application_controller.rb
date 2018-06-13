@@ -5,7 +5,12 @@ class ApplicationController < Sinatra::Base
   set :views, Proc.new { File.join(root, "../views/") }
 
   get '/' do
-    erb :index
+    if Helper.logged_in?(session)
+      @user = Helper.current_user(session)
+      erb :logged_session
+     else
+       erb :index
+     end
   end
 
 end
