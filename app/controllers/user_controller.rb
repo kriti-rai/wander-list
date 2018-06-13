@@ -50,8 +50,6 @@ class UserController < ApplicationController
   end
 
   get '/logout' do
-    #clears session
-    #redirect to '/'
     session.clear
     redirect to "/"
   end
@@ -66,9 +64,7 @@ class UserController < ApplicationController
   end
 
   get '/users/:slug' do
-    #finds and shows an individual user
     @user = User.find_by_slug(params[:slug])
-    # binding.pry
     erb :'users/show'
   end
 
