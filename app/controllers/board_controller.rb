@@ -29,7 +29,7 @@ class BoardController < ApplicationController
     if !Helper.logged_in?(session)
       redirect to '/login'
     elsif Helper.logged_in?(session)
-      @user = Helpers.current_user(session)
+      @user = Helper.current_user(session)
       if !Board.find(params[:id])
         # flash[:message] = "The board does not exist."
         redirect '/boards'
