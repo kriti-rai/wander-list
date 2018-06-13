@@ -87,7 +87,7 @@ class BoardController < ApplicationController
       redirect to '/'
     else
       @user = Helper.current_user(session)
-      @boards = Board.all
+      @users = User.all
       erb :'boards/index'
     end
   end
