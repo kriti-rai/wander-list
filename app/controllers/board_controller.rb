@@ -26,9 +26,6 @@ class BoardController < ApplicationController
 
   #------------EDIT--------------
   get '/boards/:id/edit' do
-    #finds board by slugified name
-    #user can edit name
-    #not able to add/del trips because there are so many
     if !Helper.logged_in?(session)
       flash[:message]="You have to be logged in to perform that action."
       redirect to '/'
