@@ -2,8 +2,15 @@
   <input type="hidden" name="_method" value="PATCH">
   <h2><em><font color="maroon"><%=@board.name%></font></em></h2>
   <br>
-  <font color='grey'>Edit Title: <input type= "text" name="name"></font>
-
+  <font color='grey'>
+    <p>Edit Title: <input type= "text" name="name"><p>
+    <p>Add or delete trips:<p>
+      <%Trip.all.each do |trip| %>
+        <p><input type ='checkbox' name='board[trip_id]' value=<%=trip.id%> id='<%=trip.id%>'
+          <%='checked' if @board.trips.include?(trip)%>>
+          <a href='<%=trip.url%>' target='_blank'><%=trip.name%></a><p></input>
+      <% end %>
+  </font>
   <input type="submit" value="submit">
 </form>
 <br>
