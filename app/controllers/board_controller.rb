@@ -51,14 +51,14 @@ class BoardController < ApplicationController
   end
 
   patch '/boards/:id' do
-    #replace get with patch
     @board = Board.find(params[:id])
-    if !!params[:name].empty?
-      redirect to "/boards/#{@board.id}/edit"
+    if !params[:name].empty?
+      @board.update(name: params[:name], trip_ids: params[:trip_ids])
+      @board
     else
-      @board.update(name: params[:name])
-      redirect to "/boards/#{@board.id}"
+      @board.update(trip_ids: params[:trip_ids])
     end
+      redirect to "/boards/#{@board.id}"
   end
 
   # ------------DELETE-------------
