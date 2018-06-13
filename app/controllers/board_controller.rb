@@ -15,7 +15,8 @@ class BoardController < ApplicationController
       redirect to '/boards/new'
     else
       @board = @user.boards.create(name: params[:name])
-      binding.pry
+      # binding.pry
+      @user.save
       redirect to "/boards/#{@board.id}"
     end
   end
@@ -95,6 +96,7 @@ class BoardController < ApplicationController
     # if !Helper.logged_in?(session)
     #   redirect to '/'
     # else
+      @user = Helper.current_user(session)
       @board = Board.find(params[:id])
       erb :'boards/show'
     # end
