@@ -1,6 +1,12 @@
+<h2><em><font color="maroon"><%=@board.name%></font></em></h2>
+<br>
+<form method='POST' action='/boards/<%=@board.id%>/delete'>
+  <input type='hidden' name='_method' value = 'DELETE'>
+  <input type='submit' value='Delete Board'>
+</form>
+<br>
 <form method='POST' action='/boards/<%=@board.id%>'>
   <input type="hidden" name="_method" value="PATCH">
-  <h2><em><font color="maroon"><%=@board.name%></font></em></h2>
   <br>
   <font color='grey'>
     <p>Edit Title: <input type= "text" name="name"><p>
@@ -11,6 +17,6 @@
           <a href='<%=trip.url%>' target='_blank'><%=trip.name%></a><p></input>
       <% end %>
   </font>
-  <input type="submit" value="submit">
+  <input type="submit" value="Update Board">
 </form>
 <br>
