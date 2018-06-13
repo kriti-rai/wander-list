@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_12_025858) do
+ActiveRecord::Schema.define(version: 2018_06_13_050239) do
 
-  create_table "boards", force: :cascade do |t|
-    t.string "name"
-    t.integer "user_id"
+  create_table "board_trips", force: :cascade do |t|
+    t.integer "board_id"
+    t.integer "trip_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "boards_trips", force: :cascade do |t|
-    t.integer "board_id"
-    t.integer "trip_id"
+  create_table "boards", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
