@@ -14,15 +14,14 @@ class BoardController < ApplicationController
     if !!params[:name].empty?
       redirect to '/boards/new'
     else
-      @board = Board.create(name: params[:name])
-      @board.user = @user
-      @board.save
+      @board = @user.boards.create(name: params[:name])
+      binding.pry
       redirect to "/boards/#{@board.id}"
     end
   end
 
   #------------EDIT--------------
-  get '/boards/:slug/edit' do
+  get '/boards/:id/edit' do
     #finds board by slugified name
     #user can edit name
     #not able to add/del trips because there are so many
@@ -50,7 +49,7 @@ class BoardController < ApplicationController
 
   end
 
-  post '/boards/:slug' do
+  patch '/boards/:id' do
     #replace get with patch
     @board = Board.find(params[:id])
     if !!params[:name].empty?
@@ -62,7 +61,7 @@ class BoardController < ApplicationController
   end
 
   # ------------DELETE-------------
-  get '/boards/:id/delete' do
+  delete '/boards/:id/delete' do
     #replace get with delete
     @board = Board.find(params[:id])
     @board.destroy
@@ -93,12 +92,12 @@ class BoardController < ApplicationController
   end
 
   get '/boards/:id' do
-    if !Helper.logged_in?(session)
-      redirect to '/'
-    else
+    # if !Helper.logged_in?(session)
+    #   redirect to '/'
+    # else
       @board = Board.find(params[:id])
       erb :'boards/show'
-    end
+    # end
   end
 
 

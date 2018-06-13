@@ -68,6 +68,7 @@ class UserController < ApplicationController
   get '/users/:slug' do
     #finds and shows an individual user
     @user = User.find_by_slug(params[:slug])
+    # binding.pry
     erb :'users/show'
   end
 
