@@ -34,16 +34,17 @@ class BoardController < ApplicationController
       redirect to '/'
     elsif Helper.logged_in?(session)
       @user = Helper.current_user(session)
-      if !Board.find(params[:id])
-        flash[:message] = "The board does not exist."
-        redirect '/boards'
-      elsif @board = Board.find(params[:id])
+      if Board.exists?(params[:id])
+        @board = Board.find(params[:id])
           if @board.user == @user
             erb :'boards/edit'
           else
             flash[:message] = "You don't have the permission to edit the board because it's not yours."
             redirect '/boards'
           end
+      else
+        flash[:message] = "The board does not exist."
+        redirect '/boards'
        end
     end
 
@@ -96,13 +97,14 @@ class BoardController < ApplicationController
   end
 
   get '/boards/:id' do
-    # if !Helper.logged_in?(session)
-    #   redirect to '/'
-    # else
+    if Board.exists?(params[:id])
       @user = Helper.current_user(session)
       @board = Board.find(params[:id])
       erb :'boards/show'
-    # end
+    else
+      flash[:message] = "The board does not exist."
+      redirect to '/boards'
+    end
   end
 
 
