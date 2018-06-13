@@ -1,12 +1,11 @@
-
-  <p>Hey there, <%= @user.username %>!</p>
+<h2><font color="Maroon">Hey there, <%= @user.username %>!</font></h2>
 
   <% if !!@user.boards.empty? %>
-    Seems like you haven't created a board yet!
+    <h3><font color='grey'>Seems like you haven't created a board yet!</font></h3>
   <% else %>
     <% @user.boards.each do |board| %>
       <ul>
-        <li><a href = "/boards/#{board.slug}">board.name</a></p>
+        <li><h3><a href = "/boards/#{board.slug}">board.name</a></h3>
       </ul>
       <% end %>
   <% end %>
