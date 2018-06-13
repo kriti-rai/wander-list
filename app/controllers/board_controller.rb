@@ -68,27 +68,24 @@ class BoardController < ApplicationController
 
   # ------------DELETE-------------
   delete '/boards/:id/delete' do
-    #replace get with delete
     @board = Board.find(params[:id])
     if !Helper.logged_in?(session)
-      # flash[:message] = "ATTENTION: You must be logged in to perform this action."
       redirect to '/login'
     elsif @board.user == Helper.current_user(session)
       @user = Helper.current_user(session)
       @board.destroy
       redirect to "/users/#{@user.slug}"
     else
-      flash[:message]= "You don't have the permission to delete this tweet because it's not yours."
       redirect to "/boards"
     end
 
   end
 
-
   #-------------SHOW---------------
 
   get '/boards' do
     if !Helper.logged_in?(session)
+      flash[:message]="You have to be logged in to perform that action."
       redirect to '/'
     else
       @users = User.all
