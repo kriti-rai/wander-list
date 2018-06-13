@@ -6,7 +6,7 @@
     <h3><em><font color = 'grey'>Your board(s)</font></em></h3>
     <% @user.boards.each do |board| %>
       <ul>
-        <li><h4><a href = "/boards/#{board.slug}"><%=board.name%></a></h4>
+        <li><h4><a href = "/boards/<%=board.id%>"><%=board.name%></a></h4>
       </ul>
       <% end %>
   <% end %>
