@@ -1,1 +1,8 @@
-Show all boards
+<% @users.each do |user| %>
+  <h3><font color='maroon'><%=user.username%></font></h3>
+    <% if !user.boards.empty? %>
+      <% user.boards.each do |board| %>
+        <h4><font color='grey'><a href='/boards/<%=board.id%>'><%=board.name%></a></font></h4>
+        <% end %>
+    <% end %>
+<% end %>
