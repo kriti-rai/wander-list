@@ -15,12 +15,13 @@ class BoardController < ApplicationController
 
   post '/boards' do
     @user = Helper.current_user(session)
-    if !!params[:name].empty?
-      flash[:message] = "Name can not be left empty."
+    @board = Board.new(name: params[:name])
+    @board.save
+    if !@board.save
+      flash[:message] = @board.errors.full_messages[0]
       redirect to '/boards/new'
     else
       @board = @user.boards.create(name: params[:name])
-      @user.save
       redirect to "/boards/#{@board.id}"
     end
   end
