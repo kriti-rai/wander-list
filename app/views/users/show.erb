@@ -1,14 +1,23 @@
-<h2><font color="Maroon">Hey there, <%= @user.username %>!</font></h2>
+<h2><font color="Maroon"><%= @user.username %>'s board(s)</font></h2>
 
-  <% if !!@user.boards.empty? %>
-    <h3><font color='grey'>Seems like you haven't created a board yet!</font></h3>
-  <% else %>
-    <h3><em><font color = 'grey'>Your board(s)</font></em></h3>
-    <% @user.boards.each do |board| %>
-      <ul>
-        <li><h4><a href = "/boards/<%=board.id%>"><%=board.name%></a></h4>
-      </ul>
-      <% end %>
-  <% end %>
-  <br>
-  <p><a href='/boards/new'>Create</a> | <a href='/boards'>Boards</a> | <a href='/'>Home</a><p>
+    <% if !!@user.boards.empty? %>
+        <h3><font color='grey'>Seems like there's no board yet!</font></h3>
+    <% else %>
+      <br>
+      <br>
+        <% @user.boards.each do |board| %>
+          <h4><a href = "/boards/<%=board.id%>"><%=board.name%></a></h4>
+        <% end %>
+    <% end %>
+    <br>
+    <br>
+    <br>
+    <% if @user == @current_user %>
+      <br>
+      <br>
+      <center><p><a href='/boards/new'>Create a board</a> | <a href='/boards'>Boards</a> | <a href='/'>Home</a><p></center>
+    <% else %>
+      <br>
+      <br>
+      <center><p><a href='/boards'>Boards</a> | <a href='/'>Home</a><p></center>
+    <% end %>
