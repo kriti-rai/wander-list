@@ -43,7 +43,7 @@ class BoardController < ApplicationController
           end
       else
         flash[:message] = "The board does not exist."
-        redirect '/boards'
+        redirect '/'
        end
     end
   end
@@ -81,15 +81,15 @@ class BoardController < ApplicationController
 
   #-------------SHOW---------------
 
-  get '/boards' do
-    if !Helper.logged_in?(session)
-      flash[:message]="You have to be logged in to perform that action."
-      redirect to '/'
-    else
-      @users = User.all
-      erb :'boards/index'
-    end
-  end
+  # get '/boards' do
+  #   if !Helper.logged_in?(session)
+  #     flash[:message]="You have to be logged in to perform that action."
+  #     redirect to '/'
+  #   else
+  #     @users = User.all
+  #     erb :'boards/index'
+  #   end
+  # end
 
   get '/boards/:id' do
     if Board.exists?(params[:id])
