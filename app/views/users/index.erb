@@ -1,6 +1,6 @@
+<br>
 <h2><font color="Maroon">Our Current Wanderers</font></h2>
 <br>
   <%@users.each do |user| %>
     <h4><font color="grey"><em><a href='/users/<%=user.slug%>'><%= user.username %></a></em></font></h4>
   <%end%>
-<%end%>
