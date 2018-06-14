@@ -9,7 +9,7 @@
 <%end%>
 <br>
 <% if @user == @board.user %>
-  <p><a href='/boards/new'>Create a board </a> | <a href='/boards/<%=@board.id%>/edit'>Edit board</a> | <a href='/users'>Wanderers</a> | <a href='/'>Home</a></p>
+  <p><a href='/boards/<%=@board.id%>/edit'>Edit board</a> | <a href='/users/<%=@user.slug%>'>My Boards</a> | <a href='/'>Home</a></p>
 <% else %>
   <p><a href='/users'>Wanderers</a> | <a href='/'>Home</a></p>
 <% end %>
