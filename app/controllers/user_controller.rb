@@ -60,14 +60,20 @@ class UserController < ApplicationController
   # ---------------users page------------
 
   get '/users' do
-    #shows the list of all users and their boards
-    @users = User.all
-    erb :'users/index'
+    #shows the list of all users and their board
+    if !Helper.logged_in?(session)
+      flash[:message] = "You must be logged in to perform this action."
+      redirect to '/'
+    else
+      @users = User.all
+      erb :'users/index'
+    end
   end
 
   get '/users/:slug' do
     #finds and shows users by slug
     @user = User.find_by_slug(params[:slug])
+    @current_user = Helper.current_user(session)
     erb :'users/show'
   end
 
