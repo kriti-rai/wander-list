@@ -39,7 +39,7 @@ class BoardController < ApplicationController
             erb :'boards/edit'
           else
             flash[:message] = "You don't have the permission to edit the board because it's not yours."
-            redirect '/boards'
+            redirect '/'
           end
       else
         flash[:message] = "The board does not exist."
