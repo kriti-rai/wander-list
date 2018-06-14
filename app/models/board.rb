@@ -1,5 +1,3 @@
-require_relative './concerns/slugifiable.rb'
-
 class Board < ActiveRecord::Base
   belongs_to :user
   has_many :board_trips
