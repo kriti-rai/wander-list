@@ -1,4 +1,8 @@
 <center>
+  <% if flash.has?(:message) %>
+      <font color = 'red'><%=flash[:message]%></font>
+  <% end %>
+  <br>
   <h1><font color="Maroon">Welcome to WanderList</font></h1>
   <br>
   <p><a href='/users/<%=@user.slug%>'>My Boards | <a href='/boards'>Boards</a> | <a href='/logout'>Log Out</a><p>
