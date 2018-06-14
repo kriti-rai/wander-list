@@ -45,19 +45,12 @@ class BoardController < ApplicationController
         redirect '/boards'
        end
     end
-
-
-    @board = Board.find(params[:id])
-
-    erb :"boards/edit"
-
   end
 
   patch '/boards/:id' do
     @board = Board.find(params[:id])
     if !params[:name].empty?
       @board.update(name: params[:name], trip_ids: params[:trip_ids])
-      @board
     else
       @board.update(trip_ids: params[:trip_ids])
     end
