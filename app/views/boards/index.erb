@@ -2,14 +2,15 @@
   <% if flash.has?(:message) %>
       <font color = 'red'><%=flash[:message]%></font>
   <% end %>
+  <br>
 </center>
   <h1><font color="Maroon">See what other wanderers are wondering</font></h1>
-
+  <br>
   <% @users.each do |user| %>
     <h3><em><font color='grey'><%=user.username%></font></em></h3>
       <% if !user.boards.empty? %>
         <% user.boards.each do |board| %>
             <h4><font color='grey'><a href='/boards/<%=board.id%>'><%=board.name%></a></font></h4>
-          <% end %>
+        <% end %>
       <% end %>
-      <% end %>
+  <% end %>
