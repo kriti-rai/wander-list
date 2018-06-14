@@ -9,7 +9,7 @@
   <input type="hidden" name="_method" value="PATCH">
   <br>
   <font color='grey'>
-    <p>Edit Title: <input type= "text" name="name"><p>
+    <p>Edit Name: <input type= "text" name="name"><p>
     <p>Add or delete trips:<p>
       <%@trips.each do |trip| %>
         <p><input type ='checkbox' name='[trip_ids][]' value=<%=trip.id%> id='<%=trip.id%>'
