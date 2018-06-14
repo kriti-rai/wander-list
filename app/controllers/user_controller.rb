@@ -25,6 +25,9 @@ class UserController < ApplicationController
     elsif !!params[:username].empty? || !!params[:email].empty? || !!params[:password].empty?
       flash[:message] = "All fields are required."
       redirect to '/signup'
+    else
+      flash[:message] = @user.errors.full_messages[0]
+      redirect to '/signup'
     end
 
   end
