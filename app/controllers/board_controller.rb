@@ -59,17 +59,23 @@ class BoardController < ApplicationController
 
   # ------------DELETE-------------
   delete '/boards/:id/delete' do
-    @board = Board.find(params[:id])
-    if !Helper.logged_in?(session)
-      redirect to '/login'
-    elsif @board.user == Helper.current_user(session)
-      @user = Helper.current_user(session)
-      @board.destroy
-      redirect to "/users/#{@user.slug}"
+    if Board.exists?(params[:id])
+      @board = Board.find(params[:id])
+      if !Helper.logged_in?(session)
+        flash[:message] = "You have to be logged in to perform that action."
+        redirect to '/'
+      elsif @board.user == Helper.current_user(session)
+        @user = Helper.current_user(session)
+        @board.destroy
+        redirect to "/users/#{@user.slug}"
+      else
+        flash[:message] = "You don't have the permission to perform that action."
+        redirect to "/boards"
+      end
     else
-      redirect to "/boards"
+      flash[:message] = "Either the board does not exist or you don't have the permission to perform that action."
+      redirect to '/'
     end
-
   end
 
   #-------------SHOW---------------
@@ -91,7 +97,7 @@ class BoardController < ApplicationController
       erb :'boards/show'
     else
       flash[:message] = "The board does not exist."
-      redirect to '/boards'
+      redirect to '/'
     end
   end
 
