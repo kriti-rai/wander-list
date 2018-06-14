@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <font color = 'red'><%=flash[:message]%></font>
+  <br>
+<% end %>
 <h2><font color="Maroon">Create a board</font></h2>
 
 <form method="POST" action="/boards">
