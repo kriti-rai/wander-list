@@ -35,6 +35,7 @@ class BoardController < ApplicationController
       if Board.exists?(params[:id])
         @board = Board.find(params[:id])
           if @board.user == @user
+            @trips = Trip.all.sort_by{|trip|trip.name}
             erb :'boards/edit'
           else
             flash[:message] = "You don't have the permission to edit the board because it's not yours."
