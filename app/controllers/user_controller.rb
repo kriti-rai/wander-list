@@ -23,7 +23,7 @@ class UserController < ApplicationController
       session[:id] = @user.id
       redirect to "/"
     elsif !!params[:username].empty? || !!params[:email].empty? || !!params[:password].empty?
-      flash[:message] = "All fields are required."
+      flash[:message] = @user.errors.full_messages[0]
       redirect to '/signup'
     else
       flash[:message] = @user.errors.full_messages[0]
