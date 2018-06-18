@@ -9,12 +9,4 @@ class Trip < ActiveRecord::Base
       self.create(trip_hash)
     end
   end
-
-  def pin_trip(board)
-    board.trips << self
-  end
-
-  def unpin_trip(board)
-    board.trips.delete(self)
-  end
 end
