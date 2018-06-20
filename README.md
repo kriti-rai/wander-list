@@ -6,7 +6,7 @@ This sinatra-based app brings you the list of places to visit from all around th
 
 ## Installation
 
-  To run the app, clone this git repo in your terminal and type:
+  To run the app, fork and clone this repo in your terminal and type:
 
     $ bundle install
 
