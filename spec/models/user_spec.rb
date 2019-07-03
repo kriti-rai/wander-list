@@ -2,11 +2,10 @@ require 'spec_helper'
 
 describe "User" do
   before do
-    @user = User.new(username: "kriti", password: "1234", email: "kriti@test.com")
-    @board_1 = Board.new(name: "Hawaii Trip")
-    @board_2 = Board.new(name: "EuroTrip")
-    @board_3 = Board.new(name: "SE Asia")
-
+    @user = User.create(username: "kriti", password: "1234", email: "kriti@test.com")
+    @board_1 = Board.create(name: "Hawaii Trip")
+    @board_2 = Board.create(name: "EuroTrip")
+    @board_3 = Board.create(name: "SE Asia")
   end
 
   it "has a username" do
